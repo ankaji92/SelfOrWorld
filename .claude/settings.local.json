@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npx tailwindcss init -p)"
+      "Bash(npx tailwindcss init -p)",
+      "Bash(npm install:*)"
     ],
     "deny": [],
     "ask": []
