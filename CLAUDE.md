@@ -81,9 +81,43 @@ SelfOrWorld provides three key experiences:
 
 ## Current State
 
-This repository currently contains only conceptual documentation. No code has been written yet. When implementing:
+### Frontend Implementation (Mock)
+
+A frontend mock implementation has been completed in the `frontend/` directory using:
+- **React 18** with TypeScript
+- **Vite** for build tooling
+- **Tailwind CSS** for styling
+- **React Router** for navigation
+
+All four core features have been implemented as interactive mockups:
+- WorldTree (価値観ツリー) - Tree structure for values with expand/collapse
+- Compact (週間ビュー) - Weekly time allocation with chart/list views
+- Immersion (日次タイムライン) - Daily timeline with category-coded time blocks
+- ReLiving (振り返り) - Daily reflection with emotion tracking and learnings
+
+**Important Notes**:
+- All data is currently hardcoded - no persistence layer exists yet
+- No backend API exists - this is pure frontend mockup
+- Located in `frontend/` directory
+- Run with `cd frontend && npm install && npm run dev`
+- Accessible at http://localhost:5173/
+
+### Development Commands
+
+```bash
+# Start frontend development server
+cd frontend && npm run dev
+
+# Build frontend for production
+cd frontend && npm run build
+```
+
+### Implementation Guidelines
+
+When extending this codebase:
 
 1. Maintain the philosophical foundation - this isn't generic productivity software
 2. The four features (WorldTree, Compact, Immersion, ReLiving) form an integrated system for the full cycle: values → future planning → execution → reflection → refined values
 3. Single-user focused ("for me, above all else" - まず何よりも私のために)
 4. Emphasis on vividness and concreteness in visualization to drive action
+5. UI text should be in Japanese to maintain cultural authenticity
