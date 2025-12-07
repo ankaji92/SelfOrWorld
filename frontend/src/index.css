@@ -1,5 +1,47 @@
 @import "tailwindcss";
 
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Light mode - 昼の神社・寺 */
+  --color-primary-50: #f5f5f4;
+  --color-primary-100: #e7e5e4;
+  --color-primary-200: #d6d3d1;
+  --color-primary-300: #a8a29e;
+  --color-primary-600: #57534e;
+  --color-primary-700: #44403c;
+  --color-primary-800: #292524;
+  --color-primary-900: #1c1917;
+
+  --color-accent-50: #ecfdf5;
+  --color-accent-100: #d1fae5;
+  --color-accent-500: #10b981;
+  --color-accent-600: #059669;
+  --color-accent-700: #047857;
+  --color-accent-800: #065f46;
+  --color-accent-900: #064e3b;
+
+  --color-highlight-50: #fffbeb;
+  --color-highlight-100: #fef3c7;
+  --color-highlight-200: #fde68a;
+
+  /* Dark mode - 夜の神社・寺 */
+  --color-dark-bg-primary: #0f1419;
+  --color-dark-bg-secondary: #1a1f2e;
+  --color-dark-bg-tertiary: #252b3b;
+
+  --color-dark-text-primary: #e8e6e3;
+  --color-dark-text-secondary: #b8b5b2;
+  --color-dark-text-tertiary: #8a8784;
+
+  --color-dark-accent-primary: #7ca982;
+  --color-dark-accent-secondary: #6b9270;
+  --color-dark-accent-glow: #f4a460;
+
+  --color-dark-border-primary: #2d3748;
+  --color-dark-border-secondary: #374151;
+}
+
 :root {
   font-family: system-ui, -apple-system, "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
 }

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Card } from '../components/ui';
 
 const Home = () => {
   const features = [
@@ -40,10 +41,10 @@ const Home = () => {
     <div className="space-y-12">
       {/* Hero Section */}
       <section className="text-center py-12">
-        <h2 className="text-4xl font-bold text-gray-900 mb-4">
+        <h2 className="text-4xl font-bold text-primary-800 dark:text-dark-text-primary mb-4">
           「私」という意識現象を知り、より自由になる
         </h2>
-        <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+        <p className="text-lg text-primary-600 dark:text-dark-text-secondary max-w-3xl mx-auto leading-relaxed">
           「私」という意識現象が存在しなければ、「世界」は存在しないし、
           <br />
           「世界」が存在しなければ、「私」という意識現象は存在しない。
@@ -58,19 +59,19 @@ const Home = () => {
           <Link
             key={feature.path}
             to={feature.path}
-            className="group relative bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden"
+            className="group relative bg-primary-50 dark:bg-dark-bg-secondary rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-primary-200 dark:border-dark-border-primary"
           >
-            <div className="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-5 transition-opacity" />
+            <div className="absolute inset-0 bg-gradient-to-br from-accent-900/5 to-primary-900/5 dark:from-dark-accent-primary/10 dark:to-dark-accent-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
             <div className="p-8">
               <div className="flex items-center space-x-4 mb-4">
                 <div className={`text-4xl`}>{feature.icon}</div>
                 <div>
-                  <h3 className="text-2xl font-bold text-gray-900">{feature.title}</h3>
-                  <p className="text-sm text-gray-600">{feature.subtitle}</p>
+                  <h3 className="text-2xl font-bold text-primary-800 dark:text-dark-text-primary">{feature.title}</h3>
+                  <p className="text-sm text-primary-600 dark:text-dark-text-secondary">{feature.subtitle}</p>
                 </div>
               </div>
-              <p className="text-gray-700 leading-relaxed">{feature.description}</p>
-              <div className="mt-6 flex items-center text-indigo-600 font-medium group-hover:translate-x-2 transition-transform">
+              <p className="text-primary-700 dark:text-dark-text-secondary leading-relaxed">{feature.description}</p>
+              <div className="mt-6 flex items-center text-accent-700 dark:text-dark-accent-primary font-medium group-hover:translate-x-2 transition-transform">
                 詳しく見る
                 <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -82,23 +83,23 @@ const Home = () => {
       </section>
 
       {/* Philosophy Section */}
-      <section className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-gray-200">
-        <h3 className="text-2xl font-bold text-gray-900 mb-4">どんな私が便利だと感じるか</h3>
-        <ul className="space-y-3 text-gray-700">
+      <Card className="bg-primary-50/60 dark:bg-dark-bg-secondary/80 backdrop-blur-sm">
+        <h3 className="text-2xl font-bold text-primary-800 dark:text-dark-text-primary mb-4">どんな私が便利だと感じるか</h3>
+        <ul className="space-y-3 text-primary-700 dark:text-dark-text-secondary">
           <li className="flex items-start">
-            <span className="text-indigo-600 mr-3 mt-1">•</span>
+            <span className="text-accent-700 dark:text-dark-accent-primary mr-3 mt-1">•</span>
             <span>自身の奥底から湧き上がる力に突き動かされず、漫然と生きていることに焦燥感を感じている。</span>
           </li>
           <li className="flex items-start">
-            <span className="text-indigo-600 mr-3 mt-1">•</span>
+            <span className="text-accent-700 dark:text-dark-accent-primary mr-3 mt-1">•</span>
             <span>つい、眼の前に飛び込んでくる誘惑に惹かれ、重要なことを忘れてしまう。</span>
           </li>
           <li className="flex items-start">
-            <span className="text-indigo-600 mr-3 mt-1">•</span>
+            <span className="text-accent-700 dark:text-dark-accent-primary mr-3 mt-1">•</span>
             <span>明日のこと、もっと先のこと、それらを考えたくない。でも大事な気がしている。</span>
           </li>
         </ul>
-      </section>
+      </Card>
     </div>
   );
 };

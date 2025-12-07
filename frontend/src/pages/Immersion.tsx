@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Card, Button, Input, Hint } from '../components/ui';
 
 interface TimeBlock {
   time: string;
@@ -129,31 +130,31 @@ const Immersion = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-white rounded-2xl shadow-md p-8">
+      <Card>
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h2 className="text-3xl font-bold text-gray-900">Immersion</h2>
-            <p className="text-gray-600 mt-2">明日を準備し、今日を生きる</p>
+            <h2 className="text-3xl font-bold text-primary-800">Immersion</h2>
+            <p className="text-primary-600 mt-2">明日を準備し、今日を生きる</p>
           </div>
-          <input
+          <Input
             type="date"
+            variant="date"
             value={selectedDate}
             onChange={(e) => setSelectedDate(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-transparent"
           />
         </div>
 
-        <div className="mt-6 p-4 bg-purple-50 rounded-lg border border-purple-200">
-          <p className="text-sm text-purple-900">
+        <Hint>
+          <p className="text-sm">
             <strong>💡 ヒント:</strong> 時間ごとに区切られた現実を眼の前に表示します。
             どのように動くことで調和が得られるのか、事前にメモしておきましょう。
           </p>
-        </div>
-      </div>
+        </Hint>
+      </Card>
 
       {/* Timeline View */}
-      <div className="bg-white rounded-2xl shadow-md p-8">
-        <h3 className="text-xl font-bold text-gray-900 mb-6">
+      <Card>
+        <h3 className="text-xl font-bold text-primary-800 mb-6">
           {new Date(selectedDate).toLocaleDateString('ja-JP', {
             year: 'numeric',
             month: 'long',
@@ -202,11 +203,11 @@ const Immersion = () => {
             </div>
           ))}
         </div>
-      </div>
+      </Card>
 
       {/* Summary */}
-      <div className="bg-white rounded-2xl shadow-md p-8">
-        <h3 className="text-xl font-bold text-gray-900 mb-4">時間配分サマリー</h3>
+      <Card>
+        <h3 className="text-xl font-bold text-primary-800 mb-4">時間配分サマリー</h3>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
           {Object.entries(categoryLabels).map(([key, label]) => {
             const totalHours = schedule
@@ -225,33 +226,33 @@ const Immersion = () => {
             );
           })}
         </div>
-      </div>
+      </Card>
 
       {/* Preparation Notes */}
-      <div className="bg-white rounded-2xl shadow-md p-8">
-        <h3 className="text-xl font-bold text-gray-900 mb-4">事前準備チェックリスト</h3>
+      <Card>
+        <h3 className="text-xl font-bold text-primary-800 mb-4">事前準備チェックリスト</h3>
         <div className="space-y-3">
-          <label className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer">
-            <input type="checkbox" className="w-5 h-5 text-indigo-600 rounded" />
+          <label className="flex items-center space-x-3 p-3 bg-primary-100 rounded-lg hover:bg-primary-200 cursor-pointer">
+            <input type="checkbox" className="w-5 h-5 text-accent-700 rounded" />
             <span>明日の服を準備する</span>
           </label>
-          <label className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer">
-            <input type="checkbox" className="w-5 h-5 text-indigo-600 rounded" />
+          <label className="flex items-center space-x-3 p-3 bg-primary-100 rounded-lg hover:bg-primary-200 cursor-pointer">
+            <input type="checkbox" className="w-5 h-5 text-accent-700 rounded" />
             <span>ミーティング資料を確認する</span>
           </label>
-          <label className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer">
-            <input type="checkbox" className="w-5 h-5 text-indigo-600 rounded" />
+          <label className="flex items-center space-x-3 p-3 bg-primary-100 rounded-lg hover:bg-primary-200 cursor-pointer">
+            <input type="checkbox" className="w-5 h-5 text-accent-700 rounded" />
             <span>昼食の準備をする</span>
           </label>
-          <label className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer">
-            <input type="checkbox" className="w-5 h-5 text-indigo-600 rounded" />
+          <label className="flex items-center space-x-3 p-3 bg-primary-100 rounded-lg hover:bg-primary-200 cursor-pointer">
+            <input type="checkbox" className="w-5 h-5 text-accent-700 rounded" />
             <span>読書用の本を手元に置く</span>
           </label>
         </div>
-        <button className="mt-4 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
+        <Button className="mt-4" variant="secondary">
           + 新しい準備項目を追加
-        </button>
-      </div>
+        </Button>
+      </Card>
     </div>
   );
 };

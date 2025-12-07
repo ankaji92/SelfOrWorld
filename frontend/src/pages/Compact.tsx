@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Card, Button, Hint } from '../components/ui';
 
 interface WeekActivity {
   day: string;
@@ -106,48 +107,40 @@ const Compact = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-white rounded-2xl shadow-md p-8">
+      <Card>
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h2 className="text-3xl font-bold text-gray-900">Compact</h2>
-            <p className="text-gray-600 mt-2">未来を圧縮して眺める</p>
+            <h2 className="text-3xl font-bold text-primary-800">Compact</h2>
+            <p className="text-primary-600 mt-2">未来を圧縮して眺める</p>
           </div>
           <div className="flex space-x-2">
-            <button
+            <Button
               onClick={() => setViewMode('chart')}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                viewMode === 'chart'
-                  ? 'bg-indigo-600 text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
+              variant={viewMode === 'chart' ? 'primary' : 'secondary'}
             >
               チャート表示
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={() => setViewMode('list')}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                viewMode === 'list'
-                  ? 'bg-indigo-600 text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
+              variant={viewMode === 'list' ? 'primary' : 'secondary'}
             >
               リスト表示
-            </button>
+            </Button>
           </div>
         </div>
 
-        <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
-          <p className="text-sm text-blue-900">
+        <Hint>
+          <p className="text-sm">
             <strong>💡 ヒント:</strong> 1週間を様々な形態で眺めてみましょう。
             好ましくないものに時間を取られすぎていないか、確認してみてください。
           </p>
-        </div>
-      </div>
+        </Hint>
+      </Card>
 
       {/* Week Overview */}
       {viewMode === 'chart' && (
-        <div className="bg-white rounded-2xl shadow-md p-8">
-          <h3 className="text-xl font-bold text-gray-900 mb-6">週間時間配分（12/2 - 12/8）</h3>
+        <Card>
+          <h3 className="text-xl font-bold text-primary-800 mb-6">週間時間配分（12/2 - 12/8）</h3>
           <div className="grid grid-cols-7 gap-4">
             {weekData.map((day) => (
               <div key={day.day} className="space-y-2">
@@ -186,12 +179,12 @@ const Compact = () => {
               </div>
             ))}
           </div>
-        </div>
+        </Card>
       )}
 
       {viewMode === 'list' && (
-        <div className="bg-white rounded-2xl shadow-md p-8">
-          <h3 className="text-xl font-bold text-gray-900 mb-6">週間詳細（12/2 - 12/8）</h3>
+        <Card>
+          <h3 className="text-xl font-bold text-primary-800 mb-6">週間詳細（12/2 - 12/8）</h3>
           <div className="space-y-4">
             {weekData.map((day) => (
               <div key={day.day} className="border border-gray-200 rounded-lg p-4">
@@ -212,20 +205,20 @@ const Compact = () => {
               </div>
             ))}
           </div>
-        </div>
+        </Card>
       )}
 
       {/* Reflection */}
-      <div className="bg-white rounded-2xl shadow-md p-8">
-        <h3 className="text-xl font-bold text-gray-900 mb-4">振り返り</h3>
+      <Card>
+        <h3 className="text-xl font-bold text-primary-800 mb-4">振り返り</h3>
         <textarea
-          className="w-full h-32 p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-transparent"
+          className="w-full h-32 p-4 border border-primary-300 rounded-lg focus:ring-2 focus:ring-accent-600 focus:border-transparent"
           placeholder="この1週間を眺めて、どう感じましたか？調和はとれていますか？"
         />
-        <button className="mt-4 px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors font-medium">
+        <Button className="mt-4" size="lg">
           保存
-        </button>
-      </div>
+        </Button>
+      </Card>
     </div>
   );
 };

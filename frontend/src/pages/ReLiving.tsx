@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Card, Button, Input, Hint } from '../components/ui';
 
 interface Moment {
   time: string;
@@ -85,32 +86,32 @@ const ReLiving = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-white rounded-2xl shadow-md p-8">
+      <Card>
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h2 className="text-3xl font-bold text-gray-900">ReLiving</h2>
-            <p className="text-gray-600 mt-2">過去を追体験し、意味づける</p>
+            <h2 className="text-3xl font-bold text-primary-800">ReLiving</h2>
+            <p className="text-primary-600 mt-2">過去を追体験し、意味づける</p>
           </div>
-          <input
+          <Input
             type="date"
+            variant="date"
             value={selectedDate}
             onChange={(e) => setSelectedDate(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-transparent"
           />
         </div>
 
-        <div className="mt-6 p-4 bg-orange-50 rounded-lg border border-orange-200">
-          <p className="text-sm text-orange-900">
+        <Hint variant="amber">
+          <p className="text-sm">
             <strong>💡 ヒント:</strong> その日一日を追体験し、その時々での学びを記録します。
             過去から学ぶにつれて、大事なことを為す仕方は、上手くなってゆくことでしょう。
           </p>
-        </div>
-      </div>
+        </Hint>
+      </Card>
 
       {/* Controls */}
-      <div className="bg-white rounded-2xl shadow-md p-6">
+      <Card padding="md">
         <div className="flex items-center justify-between">
-          <h3 className="text-lg font-bold text-gray-900">
+          <h3 className="text-lg font-bold text-primary-800">
             {new Date(selectedDate).toLocaleDateString('ja-JP', {
               year: 'numeric',
               month: 'long',
@@ -123,16 +124,16 @@ const ReLiving = () => {
               type="checkbox"
               checked={showLearnings}
               onChange={(e) => setShowLearnings(e.target.checked)}
-              className="w-5 h-5 text-indigo-600 rounded"
+              className="w-5 h-5 text-accent-700 rounded"
             />
-            <span className="text-sm text-gray-700">学びを表示</span>
+            <span className="text-sm text-primary-700">学びを表示</span>
           </label>
         </div>
-      </div>
+      </Card>
 
       {/* Timeline */}
-      <div className="bg-white rounded-2xl shadow-md p-8">
-        <h3 className="text-xl font-bold text-gray-900 mb-6">一日の軌跡</h3>
+      <Card>
+        <h3 className="text-xl font-bold text-primary-800 mb-6">一日の軌跡</h3>
         <div className="space-y-4">
           {moments.map((moment, index) => (
             <div
@@ -175,7 +176,7 @@ const ReLiving = () => {
             </div>
           ))}
         </div>
-      </div>
+      </Card>
 
       {/* Summary */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -205,31 +206,31 @@ const ReLiving = () => {
       </div>
 
       {/* Daily Reflection */}
-      <div className="bg-white rounded-2xl shadow-md p-8">
-        <h3 className="text-xl font-bold text-gray-900 mb-4">一日の総括</h3>
+      <Card>
+        <h3 className="text-xl font-bold text-primary-800 mb-4">一日の総括</h3>
         <textarea
-          className="w-full h-32 p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-transparent mb-4"
+          className="w-full h-32 p-4 border border-primary-300 rounded-lg focus:ring-2 focus:ring-accent-600 focus:border-transparent mb-4"
           placeholder="今日一日を振り返って、どんな学びがありましたか？明日からどのように活かしますか？"
         />
-        <button className="px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors font-medium">
+        <Button size="lg">
           保存
-        </button>
-      </div>
+        </Button>
+      </Card>
 
       {/* Accumulated Learnings */}
-      <div className="bg-white rounded-2xl shadow-md p-8">
-        <h3 className="text-xl font-bold text-gray-900 mb-4">今日の学び一覧</h3>
+      <Card>
+        <h3 className="text-xl font-bold text-primary-800 mb-4">今日の学び一覧</h3>
         <div className="space-y-2">
           {moments
             .filter((m) => m.learning)
             .map((moment, index) => (
-              <div key={index} className="flex items-start space-x-3 p-3 bg-indigo-50 rounded-lg">
-                <span className="text-indigo-600 font-bold">{index + 1}.</span>
-                <p className="text-sm text-indigo-900">{moment.learning}</p>
+              <div key={index} className="flex items-start space-x-3 p-3 bg-accent-50 rounded-lg border border-accent-200">
+                <span className="text-accent-700 font-bold">{index + 1}.</span>
+                <p className="text-sm text-primary-800">{moment.learning}</p>
               </div>
             ))}
         </div>
-      </div>
+      </Card>
     </div>
   );
 };
