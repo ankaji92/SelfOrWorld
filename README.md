@@ -175,25 +175,130 @@
 
 ---
 
-## 開発状況
+## 開発状況・技術スタック
 
-### フロントエンド（モック実装完了）
+### フロントエンド
+- **フレームワーク**: React 19 + TypeScript
+- **UIライブラリ**: Material-UI (MUI)
+- **ビルドツール**: Vite
+- **ルーティング**: React Router
+- **可視化**: D3.js
 
-フロントエンドのモック実装が完了しました。以下の4つの主要機能が実装されています：
+### バックエンド (実装済み)
+- **フレームワーク**: Python FastAPI
+- **データベース**: Neo4j (グラフデータベース)
+- **バリデーション**: Pydantic
+- **API仕様**: OpenAPI (Swagger)
 
-- **WorldTree** - 価値観の記録と鮮明化
-- **Compact** - 週間時間配分の可視化
-- **Immersion** - 日次タイムラインと準備
-- **ReLiving** - 一日の追体験と学びの記録
+## クイックスタート
 
-詳細は [frontend/README.md](./frontend/README.md) をご覧ください。
+### 前提条件
+- Node.js 18以上
+- Python 3.11以上
+- Docker & Docker Compose (推奨)
 
-#### 起動方法
+### Dockerを使用する場合（推奨）
 
 ```bash
-cd frontend
-npm install
-npm run dev
+# Docker Composeで全てのサービス（データベース、バックエンド、フロントエンド）を起動
+docker-compose up -d
+
+# または、ログを確認しながら起動
+docker-compose up
 ```
 
-開発サーバーは http://localhost:5173/ で起動します。
+アクセス:
+- **フロントエンド**: http://localhost:5173
+- **バックエンドAPI**: http://localhost:8000
+- **APIドキュメント**: http://localhost:8000/docs
+- **Neo4j Browser**: http://localhost:7474
+
+```bash
+# サービスの停止
+docker-compose down
+
+# ボリュームも削除して完全にクリーンアップ
+docker-compose down -v
+```
+
+### 手動セットアップ
+
+#### 前提条件
+- Node.js 18以上がインストール済み
+- Python 3.11以上がインストール済み
+- Neo4j 5.0以上が起動中（ローカルまたはクラウド）
+
+#### VSCode起動設定（推奨）
+
+VSCodeの「実行とデバッグ」パネルから以下の設定が利用可能です：
+
+**個別起動:**
+- `Frontend (Vite Dev Server)` - フロントエンドのみ起動
+- `Backend (FastAPI)` - バックエンドのみ起動（ローカルNeo4j）
+- `Backend (FastAPI) - Neo4j Cloud` - バックエンドのみ起動（Neo4jクラウド）
+
+**一括起動:**
+- `Full Stack (Local Neo4j)` - フロントエンド + バックエンド（ローカルNeo4j）
+- `Full Stack (Neo4j Cloud)` - フロントエンド + バックエンド（Neo4jクラウド）
+
+**注意:** Neo4jクラウドを使用する場合は、[.vscode/launch.json](.vscode/launch.json:64-67) の以下の環境変数を編集してください：
+- `NEO4J_URI`: クラウドインスタンスのURI（例: `neo4j+s://xxxxx.databases.neo4j.io`）
+- `NEO4J_USER`: ユーザー名
+- `NEO4J_PASSWORD`: パスワード
+
+#### コマンドライン起動
+
+詳細は各ディレクトリのREADMEを参照:
+- [フロントエンド](./frontend/README.md)
+- [バックエンド](./backend/README.md)
+
+## プロジェクト構成
+
+```
+SelfOrWorld/
+├── frontend/              # Reactフロントエンド
+│   ├── src/
+│   │   ├── components/   # UIコンポーネント
+│   │   ├── pages/        # ページコンポーネント
+│   │   ├── contexts/     # Reactコンテキスト
+│   │   └── theme.ts      # MUIテーマ設定
+│   └── package.json
+│
+├── backend/              # FastAPIバックエンド
+│   ├── app/
+│   │   ├── api/         # APIルーター
+│   │   ├── models/      # Pydanticモデル
+│   │   ├── services/    # ビジネスロジック
+│   │   └── database/    # Neo4j接続
+│   ├── requirements.txt
+│   └── Dockerfile
+│
+├── docs/                 # ドキュメント
+│   ├── api-worldtree.md # WorldTree API仕様
+│   └── types-worldtree.md # TypeScript型定義
+│
+├── docker-compose.yml    # Docker Compose設定
+└── CLAUDE.md            # プロジェクトガイドライン
+```
+
+## 実装済み機能
+
+### WorldTree (価値観の記録と鮮明化)
+- ✅ フロントエンド: D3.jsによるツリー可視化
+- ✅ バックエンド: Neo4jグラフDBによる階層構造管理
+- ✅ API: CRUD操作、ノード移動、並び替え
+
+### Compact (未来の圧縮体験)
+- ✅ フロントエンド: 週間時間配分の可視化（モック）
+
+### Immersion (明日の準備)
+- ✅ フロントエンド: 日次タイムライン（モック）
+
+### ReLiving (過去からの学び)
+- ✅ フロントエンド: 一日の追体験と学び記録（モック）
+
+## 開発ドキュメント
+
+- [WorldTree API仕様](./docs/api-worldtree.md)
+- [WorldTree型定義](./docs/types-worldtree.md)
+- [プロジェクトガイドライン](./CLAUDE.md)

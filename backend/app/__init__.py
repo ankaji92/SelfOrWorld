@@ -1,0 +1,1 @@
+"""SelfOrWorld backend application."""
