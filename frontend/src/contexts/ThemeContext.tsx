@@ -1,49 +1,42 @@
-import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, useMemo, ReactNode } from 'react';
+import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { getLightTheme, getDarkTheme } from '../theme';
 
-type Theme = 'light' | 'dark';
+type ThemeMode = 'light' | 'dark';
 
 interface ThemeContextType {
-  theme: Theme;
+  mode: ThemeMode;
   toggleTheme: () => void;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
-  const [theme, setTheme] = useState<Theme>(() => {
-    // ローカルストレージから初期値を取得、なければシステム設定
-    const savedTheme = localStorage.getItem('theme') as Theme | null;
-    console.log('Initial theme from localStorage:', savedTheme);
+  const [mode, setMode] = useState<ThemeMode>(() => {
+    const savedTheme = localStorage.getItem('theme') as ThemeMode | null;
     if (savedTheme) return savedTheme;
-
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   });
 
-  useEffect(() => {
-    console.log('Theme changed to:', theme);
-    const root = document.documentElement;
-    if (theme === 'dark') {
-      root.classList.add('dark');
-      console.log('Added dark class to html element');
-    } else {
-      root.classList.remove('dark');
-      console.log('Removed dark class from html element');
-    }
-    localStorage.setItem('theme', theme);
-  }, [theme]);
-
   const toggleTheme = () => {
-    console.log('toggleTheme called! Current theme:', theme);
-    setTheme((prev) => {
+    setMode((prev) => {
       const next = prev === 'light' ? 'dark' : 'light';
-      console.log('Switching from', prev, 'to', next);
+      localStorage.setItem('theme', next);
       return next;
     });
   };
 
+  const theme = useMemo(() => {
+    return mode === 'dark' ? getDarkTheme() : getLightTheme();
+  }, [mode]);
+
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      {children}
+    <ThemeContext.Provider value={{ mode, toggleTheme }}>
+      <MuiThemeProvider theme={theme}>
+        <CssBaseline />
+        {children}
+      </MuiThemeProvider>
     </ThemeContext.Provider>
   );
 };
